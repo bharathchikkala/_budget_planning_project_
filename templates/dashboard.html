@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="dashboard-container full-width">
+
+    <!-- HEADER -->   <!-- stop stop working-->
+    <div class="dashboard-header">
+        <h1>Dashboard</h1>
+        <p>Welcome, {{ name }}</p>
+    </div>
+    <div class="summary-box">
+        
+    <div class="summary-item">
+        <h3>Total Budget</h3>
+        <p>₹ {{ budget }} </p>
+    </div>
+
+    <div class="summary-item">
+        <h3>Total Spent</h3>
+        <p>₹ {{ total_expense }}</p>
+    </div>
+    
+    <div class="summary-item">
+        <h3>Remaining Balance</h3>
+        <p>₹ {{ remaining }} </p>
+    </div> 
+</div>
+
+    <!-- TWO TABLES -->
+    <div class="dashboard-grid">
+
+        <!-- LEFT CARD -->
+        <div class="card">
+            <h3>Your Expenses</h3>
+            <table>
+                <tr>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                </tr>
+
+                {% for e in expenses %}
+                <tr>
+                    <td>{{ e.category }}</td>
+                    <td>₹ {{ "%.0f"|format(e.amount) }} </td>
+                    <td>{{ e.description }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <!-- RIGHT CARD -->
+        <div class="card category-card">
+            <h3>Category-wise Total</h3>
+
+            <table>
+                <tr>
+                    <th>Category</th>
+                    <th>Total Amount</th>
+                </tr>
+
+                {% for c in category_totals %}
+                <tr>
+                    <td>{{ c.category }}</td>
+                    <td>₹ {{ "%.0f"|format(c.total) }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            <!-- TOTAL AT BOTTOM -->
+            <div class="category-total-footer">
+                Total Spend : <span>₹ {{ "%.0f"|format(total_expense) }}</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CENTER BUTTON -->
+    <div class="dashboard-actions">
+        <a href="{{ url_for('add_expense') }}" class="add-expense-link">
+            + Add New Expense
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

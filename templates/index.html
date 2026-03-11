@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div style="text-align:center; padding:60px 20px;">
+
+  <!-- MAIN TITLE -->
+  <h1 style="font-size:42px; margin-bottom:10px;">
+    Budget Planning & Expense Control System
+  </h1>
+
+  <p style="font-size:18px; color:#555; max-width:800px; margin:auto;">
+    A simple and efficient web application designed to help users track daily expenses,
+    analyze category-wise spending, and manage personal budgets effectively.
+  </p>
+
+  <!-- ACTION BUTTON -->
+  <div style="margin-top:30px;">
+    {% if session.get('user_id') %}
+      <a href="{{ url_for('dashboard') }}">
+        <button style="
+          padding:12px 30px;
+          font-size:16px;
+          background:#3498db;
+          color:white;
+          border:none;
+          border-radius:6px;
+          cursor:pointer;">
+          Go to Dashboard
+        </button>
+      </a>
+    {% else %}
+      <a href="{{ url_for('login') }}">
+        <button style="
+          padding:12px 30px;
+          font-size:16px;
+          background:#3498db;
+          color:white;
+          border:none;
+          border-radius:6px;
+          cursor:pointer;">
+          Login to Continue
+        </button>
+      </a>
+    {% endif %}
+  </div>
+
+</div>
+
+<!-- FEATURES SECTION -->
+<div style="
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  flex-wrap:wrap;
+  padding:40px;
+">
+
+  <div style="
+    width:260px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  ">
+    <h3>📊 Expense Tracking</h3>
+    <p>
+      Easily add, view, and manage daily expenses with amount, category, and description.
+    </p>
+  </div>
+
+  <div style="
+    width:260px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  ">
+    <h3>📁 Category-wise Analysis</h3>
+    <p>
+      Automatically calculates and displays total expenses for each category.
+    </p>
+  </div>
+
+  <div style="
+    width:260px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  ">
+    <h3>🔐 Secure Access</h3>
+    <p>
+      User authentication with secure login, registration, and logout functionality.
+    </p>
+  </div>
+
+</div>
+
+<!-- FOOTER NOTE -->
+<div style="text-align:center; padding:20px; color:#777;">
+  <p>
+    Final Year B.Tech Project | Developed using Flask, HTML, CSS & SQLite
+  </p>
+</div>
+
+{% endblock %}
